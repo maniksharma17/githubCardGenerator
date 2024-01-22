@@ -17,7 +17,7 @@ body{
   align-items: center;
   align-content: center;
 
-  margin: 5% auto;
+  margin: 2% auto;
   position: relative;
 }
 
@@ -28,12 +28,13 @@ body{
 }
 
 #colorBg{
-  background-color: rgb(84, 137, 197);
+  background-color: #2dba4e;
   background-size: cover;
   height: 60%;
   width: 100%;
   position: absolute;
   z-index: 0;
+
 }
 
 #image{
@@ -107,7 +108,7 @@ body{
 }
 
 
-.backBtn{
+.backBtn, .darkMode, .lightMode{
   display: block;
   margin: 10px;
   background-color: #2b3137;
@@ -118,6 +119,18 @@ body{
   padding: 10px;
   box-shadow: 5px 5px 10px rgba(0,0,0,0.15);
   border-radius: 5px;
+  display: inline;
+}
+
+.lightMode{
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.backBtn{
+  background-color: #6487aa;
+  color: white;
 }
 
 .inputBox{
@@ -164,8 +177,8 @@ body{
 
 #downloadBtn{
   display: block;
-  margin: 30px auto;
-  background-color: #2b3137;
+  margin: 20px auto;
+  background-color: #6487aa;
   color: white;
   border: none;
   height: 40px;
@@ -178,12 +191,13 @@ body{
 .maniksharma{
   display: block;
   margin: 0 auto;
+  color: black;
   text-align: center;
-  color: black
 }
 .maniksharma p{
   margin-left: 5px;
   display: inline;
+  
 }
 
 
@@ -206,10 +220,10 @@ body{
     background-color: rgb(72, 103, 156);
   }
 
-  .backBtn{
+  .backBtn, .lightMode, .darkMode{
     height: auto;
     width: auto;
     font-size: 12px;
-    background-color: rgb(72, 103, 156);
-  }
+   
+    }
 }

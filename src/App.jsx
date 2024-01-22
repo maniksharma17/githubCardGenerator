@@ -19,10 +19,12 @@ function App() {
         <Route path="/" element={<InputBox setData={setData} setAvatarBase64={setAvatarBase64}></InputBox>}></Route>
         <Route path="/card" element={<CardRenderer data={data} card={card} avatarBase64={avatarBase64}></CardRenderer>}></Route>
       </Routes>
-      <a href='https://github.com/maniksharma17' className='maniksharma'><i className='fa fa-github'></i><p>Connect on Github</p></a>
-      <a href='https://twitter.com/manik_twt' className='maniksharma'><i className='fa fa-twitter'></i><p>Connect on Twitter</p></a>
-      <a href='https://www.linkedin.com/in/manik-sharma-2712a2275/' className='maniksharma'><i className='fa fa-linkedin'></i><p>Connect on Linkedin</p></a>
 
+    <div style={{marginTop:"20px"}}>
+      <a href='https://www.linkedin.com/in/manik-sharma-2712a2275/' className='maniksharma'><i className='fa fa-linkedin'></i><p>Manik Sharma</p></a>
+      <a href='https://github.com/maniksharma17' className='maniksharma'><i className='fa fa-github'></i><p>maniksharma17</p></a>
+      <a href='https://twitter.com/manik_twt' className='maniksharma'><i className='fa fa-twitter'></i><p>manik_twt</p></a>
+    </div>
     </BrowserRouter>
     
     
@@ -77,16 +79,44 @@ function CardRenderer({data, card, avatarBase64}){
 
   <button className='backBtn' onClick={()=>{
     navigate("/")
-  }}>Go Back</button>
+  }}>Make Github Card</button>
 
-  <div className='card' ref={card}>
+  <button className='darkMode' onClick={()=>{
+    document.getElementById("colorBg").style.backgroundColor = "#2dba4e"
+    document.getElementById("card").style.backgroundColor = "#2b3137"
+    document.getElementById("name").style.color = "white"
+    document.getElementById("id").style.color = "white"
+    document.getElementById("gitIcon").style.color = "white"
+    document.querySelectorAll(".infoHead").forEach((item)=>{
+      item.style.color = "white"
+    })
+    document.querySelectorAll(".infoData").forEach((item)=>{
+      item.style.color = "white"
+    })
+  }}>Dark Mode</button>
+
+<button className='lightMode' onClick={()=>{
+    document.getElementById("colorBg").style.backgroundColor = "#2dba4e"
+    document.getElementById("card").style.backgroundColor = "white"
+    document.getElementById("name").style.color = "black"
+    document.getElementById("id").style.color = "black"
+    document.getElementById("gitIcon").style.color = "black"
+    document.querySelectorAll(".infoHead").forEach((item)=>{
+      item.style.color = "black"
+    })
+    document.querySelectorAll(".infoData").forEach((item)=>{
+      item.style.color = "black"
+    })
+  }}>Light Mode</button>
+
+  <div className='card' id='card' ref={card}>
     <div className='pfp'>
       <div id="colorBg" style={{zIndex:"0"}}></div>
       <div id='image' style={{backgroundImage: `url(${avatarBase64})` , height: "150px", width: "150px", backgroundSize: "cover", zIndex: "1", borderRadius:"50%", border:"1px solid black"}}></div>
     </div>
     <div className='username'>
       <h3 id='name'>{data.name}</h3>
-      <p id='id'><i class="fa fa-github" style={{color:"black"}} aria-hidden="true"></i> {data.login}</p>
+      <p id='id'><i class="fa fa-github" id='gitIcon' style={{color:"black"}} aria-hidden="true"></i> {data.login}</p>
     </div>
     <div className='info'>
 
@@ -113,18 +143,23 @@ function CardRenderer({data, card, avatarBase64}){
 }
 
 function CardDownloader({card}){
+  const downloadAsImage = () => {
+    
+    html2canvas(card.current, {scale: 20}).then((canvas) => {
+      // Convert canvas to JPEG Blob
+      canvas.toBlob((blob) => {
+        // Save the Blob as a file using FileSaver.js
+      
+       
+        saveAs(blob, 'github_card.jpg');
+      }, 'image/png');
+    })
+  }
 
-    const downloadAsImage = () => {
-     
-      html2canvas(card.current, {scale: 20}).then((canvas) => {
-        // Convert canvas to JPEG Blob
-        canvas.toBlob((blob) => {
-          // Save the Blob as a file using FileSaver.js
-          saveAs(blob, 'github_card.jpg');
-        }, 'image/png');
-      })
-    }
   
+  
+
+
   return (
     <div>
       {/* Your React component content */}
